@@ -65,3 +65,41 @@ phase2:
 7.Automate  & Chain
 8.Deploy & Monitor
 ________
+Zero-Shot Prompting:
+Def:
+Zero-shot prompting means giving a task to an AI without any examples. The model answers using only its pre-trained knowledge.
+When to Use:
+When the task is simple or common
+When you don’t have example data
+For quick responses or general questions
+Input:
+Translate the following sentence into French:
+"I love learning AI."
+Output:
+J'aime apprendre l'IA.
+___________
+Few-shot Prompting:
+Def:
+Few-shot prompting means giving the AI a few examples before asking it to solve a similar task.
+When to Use:
+When the task is complex or specific
+When you want better accuracy
+When format or style is important
+Input:
+Translate English to French:
+
+English: Hello
+French: Bonjour
+
+English: Thank you
+French: Merci
+
+English: I love learning AI
+French:
+
+Output:
+J'aime apprendre l'IA.
+________
+
+
+
