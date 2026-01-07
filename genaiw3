@@ -1,0 +1,67 @@
+why prompt engineering matters:
+Effective prompting bridges the gap between raw model capabilities and reliable bussiness application.
+
+strategic value
+high accuracy & faithfulness
+consistent outputs
+efficiency & speed
+improved safety
+
+risks without it
+hallucinations & Drift
+Inconsistent Quality
+Policy validation
+Data leakage risks
+______
+How LLMs Understand Prompts
+LLMs don't read like humans, they process sequences of mathematical tables to perdict the most probable next output based on patterns learned during training.
+
+Key Mechanism:
+tokenization and prediction: the text is broken into chunks the model calculates the satastical probability of next token in the sequence.
+Context Window: the maximum amount of text(input prompt + generated output) the model can retain it's working memory.
+Attention Mechanism: It allows the model to weight the importance of different works in the prompt 
+Role and structure: able to give the role to ai,structure sequence
+
+Translation example :
+
+______
+Components of a Strong Prompt
+
+The Prompt Formula:
+the robust prompt isn't just a question -it is a programmed instruction  set.
+Combining these specific components significantly reduces ambiguity and guides a model to give exact output you need.Think of it as configuring software.
+
+Role/Persona:Assigns specific expertise and perspective and tone.
+Context:provides background info target audience and specific constraints to narrow those code.
+Free-Shot Examples:demonstrate input-output to teach the model design pattern and logic.
+Task:Defines the explicit objective and success criteria using strong actions withs.
+Input Data:the actual text  or data to process clearly seperated by demilers like quotes or brackets.
+Output Format:
+Gaudralis:
+
+__________
+Tree of Thoughts(ToT):
+A problem-solving framework where the model explores multiple reasoning parts,evaluates them, and backtracts to find the optimal solution.
+phase1:Exploration and evaluation
+Generate Candidate Thoughts:create multiple possible next steps or solutions for the current state.
+Evaluate States:score or classify each candidate based on feasibility , constraints, or value.
+
+phase2:Branching and selection    
+Branch Promising Paths:expand only the high-scoring thoughts to generate the next 
+Select Best Solutions:compare the completed paths and select the one with the highest aggregate score.
+
+__________
+Prompt Lifecycle
+A systematic approach to developing reliable prompts,moving from intial defintion to production deployment.
+
+phase1:
+1.Define Goals & Metrics
+2.Gather content
+3.Draft baseline prompt
+4.Test on Dataset
+phase2:
+5.Evaluate
+6.Iterate systematically
+7.Automate  & Chain
+8.Deploy & Monitor
+________
