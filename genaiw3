@@ -28,16 +28,16 @@ ______
 Components of a Strong Prompt
 
 The Prompt Formula:
-the robust prompt isn't just a question -it is a programmed instruction  set.
-Combining these specific components significantly reduces ambiguity and guides a model to give exact output you need.Think of it as configuring software.
+  the robust prompt isn't just a question -it is a programmed instruction  set.
+  Combining these specific components significantly reduces ambiguity and guides a model to give exact output you need.Think of it as configuring software.
 
-Role/Persona:Assigns specific expertise and perspective and tone.
-Context:provides background info target audience and specific constraints to narrow those code.
-Free-Shot Examples:demonstrate input-output to teach the model design pattern and logic.
-Task:Defines the explicit objective and success criteria using strong actions withs.
-Input Data:the actual text  or data to process clearly seperated by demilers like quotes or brackets.
-Output Format:
-Gaudralis:
+  Role/Persona:Assigns specific expertise and perspective and tone.
+  Context:provides background info target audience and specific constraints to narrow those code.
+  Free-Shot Examples:demonstrate input-output to teach the model design pattern and logic.
+  Task:Defines the explicit objective and success criteria using strong actions withs.
+  Input Data:the actual text  or data to process clearly seperated by demilers like quotes or brackets.
+  Output Format:Specifies the exact structure, layout, or schema of the response (such as bullet points, table, JSON, headings, word limit, or step-by-step format) to ensure the output is usable and consistent.
+  Gaudralis:Defines constraints, boundaries, and negative instructions that limit unwanted behavior, such as what to avoid, what not to include, safety rules, tone restrictions, or length limits.
 
 __________
 Tree of Thoughts(ToT):
@@ -49,7 +49,6 @@ Evaluate States:score or classify each candidate based on feasibility , constrai
 phase2:Branching and selection    
 Branch Promising Paths:expand only the high-scoring thoughts to generate the next 
 Select Best Solutions:compare the completed paths and select the one with the highest aggregate score.
-
 __________
 Prompt Lifecycle
 A systematic approach to developing reliable prompts,moving from intial defintion to production deployment.
@@ -100,6 +99,177 @@ French:
 Output:
 J'aime apprendre l'IA.
 ________
+Role-Based Prompting:
+Def:
+Assigning the specific role or persona to the AI (such as teacher, doctor, programmer, interviewer, storyteller, etc.) so it responds from that perspective, using relevant tone, knowledge, and behavior.
+why it works:
+🎯 Guides behavior – the AI knows how to think and respond
+🧠 Improves accuracy by narrowing the context
+🗣️ Controls tone & style (formal, friendly, technical, simple)
+⚡ Reduces ambiguity and irrelevant answers
+📚 Matches real-world expertise expectations
+input:
+Act as a machine learning teacher.
+Explain overfitting in simple terms with an example.
+output:
+Overfitting happens when a machine learning model learns the training data too well, including noise, and performs poorly on new data.
+For example, if a student memorizes answers instead of understanding concepts, they may fail a new exam. Similarly, an overfitted model fails on unseen data.
+___________
+Instruction Clarity and Formatting:
+Mini-Example:
+Summarize the following text in 3 bullet points.
+Text: """Artificial Intelligence is transforming industries..."""
+
+Be Explicit and Direct:
+Clearly state what you want, how you want it, and any constraints (length, tone, format, depth).
+Example:
+Explain prompt engineering in simple language using 3 short points.
+
+Use Delimiters:
+Use symbols like """, ###, or --- to clearly separate instructions, input data, and context.
+Example:
+Summarize the text below:
+---
+Artificial Intelligence is the simulation of human intelligence...
+---
 
 
+Specify Output Schema:
+Define the exact format or structure of the response (JSON, table, bullets, headings, etc.).
+Example:
+Output format:
+- Definition:
+- Advantages:
+- Example:
 
+Negative Instruction:
+Explicitly tell the model what NOT to do to avoid unwanted output.
+Example:
+Do not include code.
+Do not exceed 100 words.
+Do not use technical jargon
+___________
+ReAct:Reason+Act
+def:
+ReAct is a prompting technique where the model reasons step-by-step (Reason) and then takes an action (Act) such as answering, deciding, or calling a tool based on that reasoning.
+why it's powerful:
+  🧠 Encourages logical, step-by-step thinking
+  🎯 Improves accuracy on complex tasks
+  🔍 Makes decisions more transparent and explainable
+  🔄 Combines thinking and doing in one workflow
+  ⚡ Reduces random or incorrect responses
+input:
+  You are an AI assistant using the ReAct method.
+  Reason step by step to solve the problem, then give the final answer.
+  Question:
+  If a store gives 20% discount on ₹1000, what is the final price?
+output:
+  Reason:
+    20% of 1000 = 200
+    Final price = 1000 − 200 = 800
+  
+  Act:
+    The final price after discount is ₹800.
+___________
+Self-Consistency Decoding:
+Core Definition:
+  Self-consistency decoding is a technique where the model generates multiple reasoning paths for the same prompt and selects the most frequent or consistent final answer instead of relying on a single output.
+ideal use cases:
+  🧮 Mathematical problem solving
+  🧠 Logical reasoning tasks
+  📐 Multi-step decision making
+  ❓ Ambiguous or complex questions
+  📊 Exam-style reasoning problems
+cost vs accuracy trade-off:
+  💰 Higher computational cost because multiple outputs are generated
+  🎯 Improved accuracy and reliability due to majority voting
+  ⚖️ Best used when correctness is more important than speed or cost
+Implementation Stratedy:
+  Generate N independent responses using randomness (temperature > 0)
+  Extract the final answer from each response
+  Apply majority voting or clustering
+  Return the most consistent answer
+confidence scoring:
+  Confidence can be estimated by:
+    📈 Frequency of the chosen answer (e.g., 7 out of 10 outputs agree)
+    🧠 Consistency across reasoning paths
+    🔢 Higher agreement ⇒ higher confidence score
+__________
+Prompt Chaining & Pipelines:
+def:Prompt chaining is a technique where a complex task is broken into multiple sequential prompts, with the output of one prompt serving as the input to the next, forming a structured pipeline.
+phase1:structure and planning
+  Decompose Task:
+    Break a large or complex task into smaller, manageable sub-tasks that can be solved step by step.
+    Example:
+      Understand the problem
+      Collect key points
+      Create an outline
+  Extract Facts:
+    Identify and extract important facts, constraints, or data needed for the task.
+    Example:
+      Topic
+      Target audience
+      Word limit
+      Key requirements
+  Draft Plan/Outline:
+    Create a clear plan or outline that defines what each later prompt should produce.
+    Example:
+      Introduction
+      Main points
+      Conclusion
+phase2:Generation and Review
+  Generate Deliverable:
+    Use the planned structure to generate the main output (article, code, summary, report, etc.).
+    Example:
+      Write the full essay based on the outline
+  verify & Refine:
+    Review the generated output to check correctness, clarity, and completeness, then refine or correct errors.
+    Example:
+      Fix factual errors
+      Improve clarity
+      Reduce redundancy
+________
+Common Mistakes to Avoid
+
+The Don'ts
+  viague instructions:Giving unclear or broad prompts leads to confusing or irrelevant outputs.
+    Example (✅):Explain AI.
+  Missing structure:Not specifying format or organization results in unstructured and hard-to-read responses.
+    Example (✅):Tell me everything about machine learning.
+  Content Stuffing:Adding too many requirements or unnecessary details in one prompt can overwhelm the model and reduce output quality.
+    Example (✅):Explain AI with history, math, code, ethics, examples, future, all in 50 words.
+
+The Do's
+  Be explicit:Clearly state what you want, how you want it, and any limits.
+    Example (✅):Explain artificial intelligence in 5 simple bullet points.
+  Use Delimiters:Separate instructions, input, and context using symbols like ---, ###, or """.
+    Example (✅):Summarize the text below:
+                  ---
+                  Artificial Intelligence enables machines to learn...
+                  ---
+  Provide Examples:Examples help the model understand expectations and produce better results.
+    Example (✅):Example output:
+                  - Definition:
+                  - Advantage:
+                  - Example:
+
+
+________________
+Iterative Refinement workflow
+________________
+Tools and Resources:
+
+Development Tools
+
+  Playgrounds & APIs:Interactive platforms and programming interfaces used to test, experiment, and deploy prompts with large language models.
+  Testing Frameworks:Tools that help systematically test, compare, and validate prompt outputs for correctness, consistency, and regressions.
+  Orchestration:Frameworks that coordinate multiple prompts, tools, and model calls into structured workflows or pipelines.
+  Evaluation Libraries:Libraries used to measure and score model outputs based on accuracy, relevance, consistency, or other metrics.
+
+Learning Resources
+
+  Official Guides:Authoritative documentation provided by AI organizations explaining best practices, APIs, and prompting techniques.
+  Seminal Papers:Foundational research papers that introduce or formalize key prompting and reasoning methods in AI.
+  Advanced Methods:Specialized prompting strategies that improve reasoning, accuracy, or task performance beyond basic prompting.
+  Community & Courses:Online groups, forums, and structured courses where learners share knowledge, learn prompting skills, and discuss advancements.
+_________________
